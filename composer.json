@@ -10,7 +10,8 @@
         "laravel/jetstream": "^5.1",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.0"
+        "livewire/livewire": "^3.0",
+        "spatie/laravel-medialibrary": "^11.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -33,6 +34,10 @@
         }
     },
     "scripts": {
+        "refresh": [
+            "@php artisan db:wipe",
+            "@php artisan migrate:refresh --seed"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
