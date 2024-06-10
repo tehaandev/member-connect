@@ -1,41 +1,41 @@
 <?php
 
-namespace App\Actions\Fortify;
+  namespace App\Actions\Fortify;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
+  use App\Models\User;
+  use Illuminate\Support\Facades\Hash;
+  use Illuminate\Support\Facades\Validator;
+  use Laravel\Fortify\Contracts\CreatesNewUsers;
+  use Laravel\Jetstream\Jetstream;
 
-class CreateNewUser implements CreatesNewUsers
-{
+  class CreateNewUser implements CreatesNewUsers
+  {
     use PasswordValidationRules;
 
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array<string, string>  $input
+     * @param array<string, string> $input
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'date_of_birth' => ['required', 'date'],
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
+      Validator::make($input, [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'phone' => ['required', 'string', 'max:255'],
+        'address' => ['required', 'string', 'max:255'],
+        'date_of_birth' => ['required', 'date'],
+        'password' => $this->passwordRules(),
+        'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+      ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'phone' => $input['phone'],
-            'address' => $input['address'],
-            'date_of_birth' => $input['date_of_birth'],
-            'password' => Hash::make($input['password']),
-        ]);
+      return User::create([
+        'name' => $input['name'],
+        'email' => $input['email'],
+        'phone' => $input['phone'],
+        'address' => $input['address'],
+        'date_of_birth' => $input['date_of_birth'],
+        'password' => Hash::make($input['password']),
+      ]);
     }
-}
+  }

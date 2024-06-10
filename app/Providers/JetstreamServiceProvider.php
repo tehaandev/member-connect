@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Providers;
+  namespace App\Providers;
 
-use App\Actions\Jetstream\DeleteUser;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Jetstream\Jetstream;
+  use App\Actions\Jetstream\DeleteUser;
+  use Illuminate\Support\ServiceProvider;
+  use Laravel\Jetstream\Jetstream;
 
-class JetstreamServiceProvider extends ServiceProvider
-{
+  class JetstreamServiceProvider extends ServiceProvider
+  {
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        //
+      //
     }
 
     /**
@@ -21,9 +21,9 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configurePermissions();
+      $this->configurePermissions();
 
-        Jetstream::deleteUsersUsing(DeleteUser::class);
+      Jetstream::deleteUsersUsing(DeleteUser::class);
     }
 
     /**
@@ -31,13 +31,13 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function configurePermissions(): void
     {
-        Jetstream::defaultApiTokenPermissions(['read']);
+      Jetstream::defaultApiTokenPermissions(['read']);
 
-        Jetstream::permissions([
-            'create',
-            'read',
-            'update',
-            'delete',
-        ]);
+      Jetstream::permissions([
+        'create',
+        'read',
+        'update',
+        'delete',
+      ]);
     }
-}
+  }

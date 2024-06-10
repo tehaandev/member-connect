@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions\Fortify;
+  namespace App\Actions\Fortify;
 
-use Illuminate\Validation\Rules\Password;
+  use Illuminate\Validation\Rules\Password;
 
-trait PasswordValidationRules
-{
+  trait PasswordValidationRules
+  {
     /**
      * Get the validation rules used to validate passwords.
      *
@@ -13,6 +13,6 @@ trait PasswordValidationRules
      */
     protected function passwordRules(): array
     {
-        return ['required', 'string', Password::default(), 'confirmed'];
+      return ['required', 'string', Password::default(), 'confirmed'];
     }
-}
+  }
