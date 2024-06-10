@@ -14,7 +14,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        return view('reservations.index', [
+            'reservations' => Reservation::paginate(),
+        ]);
     }
 
     /**
@@ -22,7 +24,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view('reservations.create');
     }
 
     /**
@@ -30,7 +32,10 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $validated['slug'] = \Str::slug($validated['user_id'].'-'.$validated['amenity_id'].'-'.now()->timestamp);
+        Reservation::create($validated);
+        return redirect()->route('reservations.index')->with('flash.banner', 'Reservation created successfully');
     }
 
     /**
@@ -46,7 +51,9 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //
+       return view('reservations.edit', [
+         'reservation' => $reservation,
+       ]);
     }
 
     /**
@@ -54,7 +61,11 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
-        //
+        $validated = $request->validated();
+        $validated['slug'] = \Str::slug($validated['user_id'].'-'.$validated['amenity_id'].'-'.now()
+           ->timestamp);
+        $reservation->update($validated);
+        return redirect()->route('reservations.index')->with('flash.banner', 'Reservation updated successfully');
     }
 
     /**
@@ -62,6 +73,8 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $model = $reservation->id;
+        $reservation->delete();
+        return redirect()->route('reservations.index')->with('flash.banner', 'Reservation '. $model .' deleted successfully');
     }
 }

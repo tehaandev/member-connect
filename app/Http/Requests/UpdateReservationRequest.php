@@ -11,7 +11,7 @@ class UpdateReservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+          'user_id' => 'required|exists:users,id',
+          'amenity_id' => 'required|exists:amenities,id',
+          'date' => 'required|date|after:today|before:'.date('Y-m-d', strtotime('+1 year')),
         ];
     }
 }

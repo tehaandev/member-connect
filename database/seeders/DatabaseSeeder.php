@@ -3,6 +3,7 @@
   namespace Database\Seeders;
 
   use App\Models\Amenity;
+  use App\Models\Reservation;
   use App\Models\User;
   use Illuminate\Database\Seeder;
 
@@ -24,7 +25,9 @@
 
       User::factory(99)->create();
 
-      Amenity::factory(10)->create();
+      Amenity::factory(100)->create();
+
+      Reservation::factory(100)->create();
 
     }
   }

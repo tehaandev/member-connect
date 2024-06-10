@@ -31,11 +31,8 @@
      */
     public function store(StoreAmenityRequest $request)
     {
-      // Get the validated data
       $validated = $request->validated();
-      // Get slug from name
       $validated['slug'] = \Str::slug($validated['name']);
-
       Amenity::create($validated);
       return redirect()->route('amenities.index')->with('flash.banner', 'Amenity created successfully.');
     }
@@ -76,7 +73,6 @@
     {
       $model = $amenity->name;
       $amenity->delete();
-
       return redirect()->route('amenities.index')->with('flash.banner', 'Amenity '. $model .' deleted 
       successfully.');
     }

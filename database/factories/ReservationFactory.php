@@ -17,7 +17,10 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1, 50),
+            'amenity_id' => $this->faker->numberBetween(1, 50),
+          'slug' => $this->faker->unique()->slug,
+            'date' => $this->faker->dateTimeBetween('now','+1 year')->format('Y-m-d'),
         ];
     }
 }
