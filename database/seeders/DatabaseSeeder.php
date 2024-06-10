@@ -4,6 +4,7 @@
 
   use App\Models\Amenity;
   use App\Models\Reservation;
+  use App\Models\Roles;
   use App\Models\User;
   use Illuminate\Database\Seeder;
 
@@ -28,6 +29,23 @@
       Amenity::factory(100)->create();
 
       Reservation::factory(100)->create();
+
+      Roles::create([
+        'name' => 'admin',
+        'slug' => 'admin',
+      ],
+      [
+        'name' => 'super-admin',
+        'slug' => 'super-admin',
+      ],
+      [
+        'name' => 'user',
+        'slug' => 'user',
+      ],
+      [
+        'name' => 'super-admin',
+        'slug' => 'super-admin',
+      ]);
 
     }
   }

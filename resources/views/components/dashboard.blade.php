@@ -20,10 +20,10 @@
 {{--    py-2 px-4 rounded duration-300">--}}
 {{--        <a href="{{ route('users.index') }}">Manage Users</a>--}}
 {{--    </button>--}}
-{{--    <button class="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold--}}
-{{--    py-2 px-4 rounded duration-300">--}}
-{{--        <a href="{{ route('roles.index') }}">Manage Roles</a>--}}
-{{--    </button>--}}
+    <button class="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold
+    py-2 px-4 rounded duration-300">
+        <a href="{{ route('roles.index') }}">Manage Roles</a>
+    </button>
 {{--    <button class="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold--}}
 {{--    py-2 px-4 rounded duration-300">--}}
 {{--        <a href="{{ route('permissions.index') }}">Manage Permissions</a>--}}

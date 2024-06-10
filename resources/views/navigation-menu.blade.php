@@ -40,7 +40,9 @@
                         SELF-CARE
                     </button>
                     @guest()
-                        <button class="bg-[#C2D32B] text-white text-sm
+                        <button
+                                href="{{ route('dashboard') }}"
+                                class="bg-[#C2D32B] text-white text-sm
                         font-extrabold
                     border-[#C2D32B]
                     border-2 rounded-md px-2 py-1 h-10">
