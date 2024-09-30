@@ -32,6 +32,7 @@
         'email_verified_at' => now(),
         'phone' => fake()->phoneNumber(),
         'password' => static::$password ??= Hash::make('password'),
+        'role_id' => random_int(1, 3),
         'two_factor_secret' => null,
         'two_factor_recovery_codes' => null,
         'remember_token' => Str::random(10),

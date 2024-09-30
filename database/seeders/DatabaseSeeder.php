@@ -7,6 +7,7 @@
   use App\Models\Roles;
   use App\Models\User;
   use Illuminate\Database\Seeder;
+  use Laravel\Jetstream\Role;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -33,19 +34,16 @@
       Roles::create([
         'name' => 'admin',
         'slug' => 'admin',
-      ],
-      [
-        'name' => 'super-admin',
-        'slug' => 'super-admin',
-      ],
-      [
-        'name' => 'user',
-        'slug' => 'user',
-      ],
-      [
+      ]);
+      Roles::create([
         'name' => 'super-admin',
         'slug' => 'super-admin',
       ]);
+        Roles::create([
+            'name' => 'user',
+            'slug' => 'user',
+        ]);
+
 
     }
   }
