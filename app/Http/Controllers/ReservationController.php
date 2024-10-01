@@ -28,7 +28,8 @@ class ReservationController extends Controller
     public function create()
     {
         $amenities = Amenity::all(); // Fetch all amenities from the database
-        return view('reservations.create', compact('amenities'));
+        $users = User::all(); // Fetch all users from the database
+        return view('reservations.create', compact('amenities', 'users'));
     }
 
     /**

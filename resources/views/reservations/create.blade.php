@@ -17,9 +17,25 @@
                     @csrf
                     <div class="mb-4">
                         <x-label for="user_id">User ID</x-label>
-                        <x-input type="text" name="user_id" id="user_id"
-                                 value="{{ Auth::user()->id }}"
-                        />
+                        @if(Auth::user()->role_id == 2)
+                            <x-input
+                                disabled
+                                type="text" name="user_id" id="user_id"
+                                     value="{{ Auth::user()->id }}"
+                            />
+                        @else
+                            <select
+                                name="user_id"
+                                id="user_id"
+                                class="shadow appearance-none border rounded
+                                w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            >
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        @endif
+
                     </div>
                     <div class="mb-4">
                         <x-label for="amenity_id" class="block text

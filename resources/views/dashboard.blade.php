@@ -10,6 +10,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <x-dashboard />
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    Amenities <span class="float-right">100</span>
+                </div>
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    Users <span class="float-right">100</span>
+                </div>
             </div>
         </div>
     </div>
