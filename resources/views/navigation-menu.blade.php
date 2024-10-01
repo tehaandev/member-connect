@@ -25,7 +25,7 @@
                     </x-nav-link>
                     @auth()
 
-                        @if(Auth::user()->role_id == 1)
+                        @if(Auth::user()->role_id == 0 || Auth::user()->role_id == 1)
                             <x-nav-link href="{{ route('dashboard') }}"
                                         :active="request()->routeIs('dashboard')">
                                 {{ __('Admin Dashboard') }}
@@ -37,7 +37,7 @@
 
 
 
-                        @if(!Auth::user()->role_id==1)
+                        @if(Auth::user()->role_id==2)
 
                                 <button class="text-[#C2D32B] text-sm font-extrabold
                     border-[#C2D32B] disabled:opacity-70 disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300

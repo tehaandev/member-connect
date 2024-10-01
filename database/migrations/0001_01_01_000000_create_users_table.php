@@ -19,7 +19,7 @@
         $table->date('date_of_birth')->nullable();
         $table->timestamp('email_verified_at')->nullable();
         $table->string('password');
-        $table->foreignId('role_id')->constrained()->onDelete('cascade');
+        $table->foreignId('role_id')->constrained('roles','id')->onDelete('cascade');
         $table->rememberToken();
         $table->foreignId('current_team_id')->nullable();
         $table->string('profile_photo_path', 2048)->nullable();
