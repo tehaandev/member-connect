@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <x-application-mark class="block w-auto"/>
+                        <x-application-mark class="block w-auto" />
                     </a>
                 </div>
 
@@ -24,25 +24,40 @@
                         Amenities
                     </x-nav-link>
                     @auth()
-                        <x-nav-link href="{{ route('dashboard') }}"
-                                    :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
+                        @if(Auth::user()->hasRole('sss'))
+                            <x-nav-link href="{{ route('dashboard') }}"
+                                        :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+                        @endif
+
+
+
+
+
+                        <button class="text-[#C2D32B] text-sm font-extrabold
+                    border-[#C2D32B] disabled:opacity-70 disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300
+                     border-2 rounded-md px-2 py-1 h-10"
+                                onclick="
+                    window.location.href = '/reservations/create';
+                    "
+                        >
+                            RESERVATIONS
+                        </button>
+                        <button class="text-[#D16014] text-sm font-extrabold
+                    border-[#D16014] disabled:opacity-70 disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300
+                    border-2 rounded-md px-2 py-1 h-10"
+                                onclick="
+                    window.location.href = '/dashboard';
+                    "
+                        >
+                            SELF-CARE
+                        </button>
                     @endauth
-                    <button class="text-[#C2D32B] text-sm font-extrabold
-                    border-[#C2D32B]
-                     border-2 rounded-md px-2 py-1 h-10">
-                        RESERVATIONS
-                    </button>
-                    <button class="text-[#D16014] text-sm font-extrabold
-                    border-[#D16014]
-                    border-2 rounded-md px-2 py-1 h-10">
-                        SELF-CARE
-                    </button>
                     @guest()
                         <button
-                                href="{{ route('dashboard') }}"
-                                class="bg-[#C2D32B] text-white text-sm
+                            onclick="window.location.href = '/login';"
+                            class="bg-[#C2D32B] text-white text-sm
                         font-extrabold
                     border-[#C2D32B]
                     border-2 rounded-md px-2 py-1 h-10">
@@ -71,7 +86,7 @@
                                              stroke="currentColor">
                                             <path stroke-linecap="round"
                                                   stroke-linejoin="round"
-                                                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"/>
+                                                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
                                         </svg>
                                     </button>
                                 </span>
@@ -86,13 +101,13 @@
 
                                     <!-- Team Settings -->
                                     <x-dropdown-link
-                                            href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                                        href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                         {{ __('Team Settings') }}
                                     </x-dropdown-link>
 
                                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                         <x-dropdown-link
-                                                href="{{ route('teams.create') }}">
+                                            href="{{ route('teams.create') }}">
                                             {{ __('Create New Team') }}
                                         </x-dropdown-link>
                                     @endcan
@@ -106,7 +121,7 @@
                                         </div>
 
                                         @foreach (Auth::user()->allTeams() as $team)
-                                            <x-switchable-team :team="$team"/>
+                                            <x-switchable-team :team="$team" />
                                         @endforeach
                                     @endif
                                 </div>
@@ -121,10 +136,11 @@
                         <x-slot name="trigger">
                             @auth
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                    <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                    <button
+                                        class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                         <img class="h-8 w-8 rounded-full object-cover"
                                              src="{{ Auth::user()->profile_photo_url }}"
-                                             alt="{{ Auth::user()->name }}"/>
+                                             alt="{{ Auth::user()->name }}" />
                                     </button>
                                 @else
 
@@ -140,7 +156,7 @@
                                              stroke="currentColor">
                                             <path stroke-linecap="round"
                                                   stroke-linejoin="round"
-                                                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                                                  d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                         </svg>
                                     </button>
                                 </span>
@@ -161,7 +177,7 @@
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link
-                                        href="{{ route('api-tokens.index') }}">
+                                    href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
                                 </x-dropdown-link>
                             @endif
@@ -192,11 +208,11 @@
                         <path :class="{'hidden': open, 'inline-flex': ! open }"
                               class="inline-flex" stroke-linecap="round"
                               stroke-linejoin="round" stroke-width="2"
-                              d="M4 6h16M4 12h16M4 18h16"/>
+                              d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }"
                               class="hidden" stroke-linecap="round"
                               stroke-linejoin="round" stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12"/>
+                              d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -222,7 +238,7 @@
                         <div class="shrink-0 me-3">
                             <img class="h-10 w-10 rounded-full object-cover"
                                  src="{{ Auth::user()->profile_photo_url }}"
-                                 alt="{{ Auth::user()->name }}"/>
+                                 alt="{{ Auth::user()->name }}" />
                         </div>
                     @endif
                 @endauth
@@ -247,8 +263,8 @@
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-responsive-nav-link
-                            href="{{ route('api-tokens.index') }}"
-                            :active="request()->routeIs('api-tokens.index')">
+                        href="{{ route('api-tokens.index') }}"
+                        :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
                     </x-responsive-nav-link>
                 @endif
@@ -273,15 +289,15 @@
 
                     <!-- Team Settings -->
                     <x-responsive-nav-link
-                            href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
-                            :active="request()->routeIs('teams.show')">
+                        href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
+                        :active="request()->routeIs('teams.show')">
                         {{ __('Team Settings') }}
                     </x-responsive-nav-link>
 
                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                         <x-responsive-nav-link
-                                href="{{ route('teams.create') }}"
-                                :active="request()->routeIs('teams.create')">
+                            href="{{ route('teams.create') }}"
+                            :active="request()->routeIs('teams.create')">
                             {{ __('Create New Team') }}
                         </x-responsive-nav-link>
                     @endcan
@@ -296,7 +312,7 @@
 
                         @foreach (Auth::user()->allTeams() as $team)
                             <x-switchable-team :team="$team"
-                                               component="responsive-nav-link"/>
+                                               component="responsive-nav-link" />
                         @endforeach
                     @endif
                 @endif

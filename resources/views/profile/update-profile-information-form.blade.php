@@ -23,9 +23,9 @@
                                         photoPreview = e.target.result;
                                     };
                                     reader.readAsDataURL($refs.photo.files[0]);
-                            "/>
+                            " />
 
-                <x-label for="photo" value="{{ __('Photo') }}"/>
+                <x-label for="photo" value="{{ __('Photo') }}" />
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -53,24 +53,24 @@
                     </x-secondary-button>
                 @endif
 
-                <x-input-error for="photo" class="mt-2"/>
+                <x-input-error for="photo" class="mt-2" />
             </div>
         @endif
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}"/>
+            <x-label for="name" value="{{ __('Name') }}" />
             <x-input id="name" type="text" class="mt-1 block w-full"
-                     wire:model="state.name" required autocomplete="name"/>
-            <x-input-error for="name" class="mt-2"/>
+                     wire:model="state.name" required autocomplete="name" />
+            <x-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="email" value="{{ __('Email') }}"/>
+            <x-label for="email" value="{{ __('Email') }}" />
             <x-input id="email" type="email" class="mt-1 block w-full"
-                     wire:model="state.email" required autocomplete="username"/>
-            <x-input-error for="email" class="mt-2"/>
+                     wire:model="state.email" required autocomplete="username" />
+            <x-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
@@ -93,31 +93,31 @@
 
         <!-- Phone -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="phone" value="{{ __('Phone') }}"/>
+            <x-label for="phone" value="{{ __('Phone') }}" />
             <x-input
-                    x-data
-                    x-mask="0799999999" placeholder="07XXXXXXXXX"
-                    id="phone" type="tel" class="mt-1 block w-full"
-                    wire:model="state.phone" required autocomplete="tel"/>
-            <x-input-error for="phone" class="mt-2"/>
+                x-data
+                x-mask="0799999999" placeholder="07XXXXXXXXX"
+                id="phone" type="tel" class="mt-1 block w-full"
+                wire:model="state.phone" required autocomplete="tel" />
+            <x-input-error for="phone" class="mt-2" />
         </div>
 
         <!-- Address -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="address" value="{{ __('Address') }}"/>
+            <x-label for="address" value="{{ __('Address') }}" />
             <x-input id="address" type="text" class="mt-1 block w-full"
                      wire:model="state.address" required
-                     autocomplete="address"/>
-            <x-input-error for="address" class="mt-2"/>
+                     autocomplete="address" />
+            <x-input-error for="address" class="mt-2" />
         </div>
 
         <!-- Date of birth -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="date_of_birth" value="{{ __('Date of Birth') }}"/>
+            <x-label for="date_of_birth" value="{{ __('Date of Birth') }}" />
             <x-input id="date_of_birth" type="date" class="mt-1 block
             w-full" wire:model="state.date_of_birth" required
-                     autocomplete="date_of_birth"/>
-            <x-input-error for="date_of_birth" class="mt-2"/>
+                     autocomplete="date_of_birth" />
+            <x-input-error for="date_of_birth" class="mt-2" />
         </div>
     </x-slot>
 

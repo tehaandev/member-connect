@@ -8,8 +8,8 @@
                     duration-300 hover:duration-300
                     border-green-600 rounded-md hover:bg-green-600
                     hover:text-white"
-                    href="{{route('amenities.create')}}">
-                Add New Amenity
+                   href="{{route('amenities.create')}}">
+                    Add New Amenity
                 </a>
             </div>
 

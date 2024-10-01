@@ -6,6 +6,7 @@ use App\Models\Reservation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Amenity;
 
 class ReservationController extends Controller
 {
@@ -24,7 +25,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('reservations.create');
+        $amenities = Amenity::all(); // Fetch all amenities from the database
+        return view('reservations.create', compact('amenities'));
     }
 
     /**

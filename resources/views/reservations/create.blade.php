@@ -11,29 +11,41 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form action="{{ route('reservations.store')}}"
                       method="POST"
-                      class="p-4">
+                      class="p-4"
+                      onsubmit="console.log('submitting form')"
+                >
                     @csrf
                     <div class="mb-4">
-                        <x-label for="user_id" >User ID</x-label>
+                        <x-label for="user_id">User ID</x-label>
                         <x-input type="text" name="user_id" id="user_id"
-                               />
+                                 value="{{ Auth::user()->id }}"
+                        />
                     </div>
                     <div class="mb-4">
                         <x-label for="amenity_id" class="block text
-                        -gray-700 text-sm font-bold mb-2">Amenity ID</x-label>
-                        <x-input type="text" name="amenity_id" id="amenity_id"
-                               />
+                        -gray-700 text-sm font-bold mb-2">Amenity ID
+                        </x-label>
+                        <select name="amenity_id" id="amenity_id"
+                                class="shadow appearance-none border rounded
+                                w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            @foreach($amenities as $amenity)
+                                <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-4">
                         <x-label for="date" class="block text-gray-700 text-sm
-                         font-bold mb-2">Date</x-label>
+                         font-bold mb-2">Date
+                        </x-label>
                         <x-input type="date" name="date" id="date"
-                               class="shadow appearance-none border rounded
-                               w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                                 class="shadow appearance-none border rounded
+                               w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                     </div>
                     <div class="mb-4">
                         <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            {{--                        // create reservation on click --}}
+                        >
                             Create
                         </button>
                         <a href="{{ route('reservations.index') }}"

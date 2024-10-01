@@ -19,8 +19,8 @@
                             Name
                         </x-label>
                         <x-input
-                                id="name" type="text" placeholder="Name"
-                                name="name"/>
+                            id="name" type="text" placeholder="Name"
+                            name="name" />
                     </div>
                     @error('name')
                     <p class="text-red-600 text-xs italic">{{ $message
@@ -46,14 +46,14 @@
                             Is Available
                         </x-label>
                         <input type="checkbox" name="is_available"
-                                 id="is_available" value="1" {{ old('is_available') ? 'checked' : '' }}/>
+                               id="is_available" value="1" {{ old('is_available') ? 'checked' : '' }}/>
                     </div>
                     <div class="flex items-center justify-start space-x-2">
                         <button
-                                class="bg-blue-500 hover:bg-blue-700 duration-300
+                            class="bg-blue-500 hover:bg-blue-700 duration-300
                                 text-white
                             font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit">
+                            type="submit">
                             Create
                         </button>
                         <a href="{{ route('amenities.index') }}"

@@ -8,8 +8,8 @@
                     duration-300 hover:duration-300
                     border-green-600 rounded-md hover:bg-green-600
                     hover:text-white"
-                    href="{{route('roles.create')}}">
-                Add New Role
+                   href="{{route('roles.create')}}">
+                    Add New Role
                 </a>
             </div>
         </h2>

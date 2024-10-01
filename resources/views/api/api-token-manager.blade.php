@@ -12,23 +12,23 @@
         <x-slot name="form">
             <!-- Token Name -->
             <div class="col-span-6 sm:col-span-4">
-                <x-label for="name" value="{{ __('Token Name') }}"/>
+                <x-label for="name" value="{{ __('Token Name') }}" />
                 <x-input id="name" type="text" class="mt-1 block w-full"
-                         wire:model="createApiTokenForm.name" autofocus/>
-                <x-input-error for="name" class="mt-2"/>
+                         wire:model="createApiTokenForm.name" autofocus />
+                <x-input-error for="name" class="mt-2" />
             </div>
 
             <!-- Token Permissions -->
             @if (Laravel\Jetstream\Jetstream::hasPermissions())
                 <div class="col-span-6">
-                    <x-label for="permissions" value="{{ __('Permissions') }}"/>
+                    <x-label for="permissions" value="{{ __('Permissions') }}" />
 
                     <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                         @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                             <label class="flex items-center">
                                 <x-checkbox
-                                        wire:model="createApiTokenForm.permissions"
-                                        :value="$permission"/>
+                                    wire:model="createApiTokenForm.permissions"
+                                    :value="$permission" />
                                 <span class="ms-2 text-sm text-gray-600">{{ $permission }}</span>
                             </label>
                         @endforeach
@@ -49,7 +49,7 @@
     </x-form-section>
 
     @if ($this->user->tokens->isNotEmpty())
-        <x-section-border/>
+        <x-section-border />
 
         <!-- Manage API Tokens -->
         <div class="mt-10 sm:mt-0">
@@ -137,7 +137,7 @@
                 @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                     <label class="flex items-center">
                         <x-checkbox wire:model="updateApiTokenForm.permissions"
-                                    :value="$permission"/>
+                                    :value="$permission" />
                         <span class="ms-2 text-sm text-gray-600">{{ $permission }}</span>
                     </label>
                 @endforeach
@@ -146,8 +146,8 @@
 
         <x-slot name="footer">
             <x-secondary-button
-                    wire:click="$set('managingApiTokenPermissions', false)"
-                    wire:loading.attr="disabled">
+                wire:click="$set('managingApiTokenPermissions', false)"
+                wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-secondary-button>
 
@@ -170,8 +170,8 @@
 
         <x-slot name="footer">
             <x-secondary-button
-                    wire:click="$toggle('confirmingApiTokenDeletion')"
-                    wire:loading.attr="disabled">
+                wire:click="$toggle('confirmingApiTokenDeletion')"
+                wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-secondary-button>
 
