@@ -24,10 +24,11 @@
                         Amenities
                     </x-nav-link>
                     @auth()
-                        @if(Auth::user()->hasRole('sss'))
+
+                        @if(Auth::user()->role_id == 1)
                             <x-nav-link href="{{ route('dashboard') }}"
                                         :active="request()->routeIs('dashboard')">
-                                {{ __('Dashboard') }}
+                                {{ __('Admin Dashboard') }}
                             </x-nav-link>
                         @endif
 
@@ -35,24 +36,28 @@
 
 
 
-                        <button class="text-[#C2D32B] text-sm font-extrabold
+
+                        @if(!Auth::user()->role_id==1)
+
+                                <button class="text-[#C2D32B] text-sm font-extrabold
                     border-[#C2D32B] disabled:opacity-70 disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300
                      border-2 rounded-md px-2 py-1 h-10"
-                                onclick="
+                                        onclick="
                     window.location.href = '/reservations/create';
                     "
-                        >
-                            RESERVATIONS
-                        </button>
-                        <button class="text-[#D16014] text-sm font-extrabold
+                                >
+                                    RESERVATIONS
+                                </button>
+                                <button class="text-[#D16014] text-sm font-extrabold
                     border-[#D16014] disabled:opacity-70 disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300
                     border-2 rounded-md px-2 py-1 h-10"
-                                onclick="
+                                        onclick="
                     window.location.href = '/dashboard';
                     "
-                        >
-                            SELF-CARE
-                        </button>
+                                >
+                                    SELF-CARE
+                                </button>
+                        @endif
                     @endauth
                     @guest()
                         <button
