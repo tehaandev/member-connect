@@ -9,7 +9,6 @@
                         <x-application-mark class="block w-auto" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-4 sm:-my-px sm:ms-10 sm:flex
                 sm:items-center">
