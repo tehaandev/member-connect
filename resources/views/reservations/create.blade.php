@@ -38,6 +38,7 @@
                          font-bold mb-2">Date
                         </x-label>
                         <x-input type="date" name="date" id="date"
+                                 min="{{ date('Y-m-d') }}"
                                  class="shadow appearance-none border rounded
                                w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                     </div>
@@ -58,4 +59,27 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('date');
+            const today = new Date();
+            const nextYear = new Date();
+            nextYear.setFullYear(today.getFullYear() + 1);
+
+            const formatDate = (date) => {
+                const d = new Date(date);
+                let month = '' + (d.getMonth() + 1);
+                let day = '' + d.getDate();
+                const year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('-');
+            };
+
+            dateInput.min = formatDate(today);
+            dateInput.max = formatDate(nextYear);
+        });
+    </script>
 </x-app-layout>

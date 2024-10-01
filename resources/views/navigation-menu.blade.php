@@ -48,15 +48,6 @@
                                 >
                                     RESERVATIONS
                                 </button>
-                                <button class="text-[#D16014] text-sm font-extrabold
-                    border-[#D16014] disabled:opacity-70 disabled:text-gray-300 disabled:cursor-not-allowed disabled:border-gray-300
-                    border-2 rounded-md px-2 py-1 h-10"
-                                        onclick="
-                    window.location.href = '/dashboard';
-                    "
-                                >
-                                    SELF-CARE
-                                </button>
                         @endif
                     @endauth
                     @guest()

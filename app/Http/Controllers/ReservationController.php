@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Amenity;
+use App\Models\User;
+use Mail;
 
 class ReservationController extends Controller
 {
@@ -37,6 +39,17 @@ class ReservationController extends Controller
         $validated = $request->validated();
         $validated['slug'] = \Str::slug($validated['user_id'].'-'.$validated['amenity_id'].'-'.now()->timestamp);
         Reservation::create($validated);
+        $email = User::find($validated['user_id'])->email;
+        $user_name = User::find($validated['user_id'])->name;
+        $reservation = [
+            'user_name' => $user_name,
+            'amenity_name' => Amenity::find($validated['amenity_id'])->name,
+            'date' => $validated['date'],
+        ];
+
+
+
+        Mail::to($email)->send(new \App\Mail\ReservationCreated($reservation));
         return redirect()->route('reservations.index')->with('flash.banner', 'Reservation created successfully');
     }
 
