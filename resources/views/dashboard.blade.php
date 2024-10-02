@@ -17,6 +17,20 @@
                         :user-labels="$monthlyUserLabel"
                     />
                 </div>
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 text-center">Reservations</h2>
+                    <x-reservations-chart
+                        :data="$monthlyReservationsCount"
+                        :labels="$monthlyReservationLabel"
+                    />
+                </div>
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 text-center">Busiest Amenities</h2>
+                    <x-amenity-chart
+                        :data="$reservationsByAmenityCount"
+                        :labels="$reservationsByAmenityLabel"
+                    />
+                </div>
 
 
             </div>
