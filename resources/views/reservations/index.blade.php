@@ -19,6 +19,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                @if(Auth::user()->role_id == 0 || Auth::user()->role_id == 1)
                 <table class="table-auto w-full">
                     <thead>
                     <tr>
@@ -64,10 +65,8 @@
                 <div class="m-4 bg-white">
                     {{$reservations->links()}}
                 </div>
-
-
+                @endif
             </div>
-
         </div>
     </div>
 </x-app-layout>

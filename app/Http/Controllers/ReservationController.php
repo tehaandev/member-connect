@@ -17,9 +17,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view('reservations.index', [
-            'reservations' => Reservation::paginate(),
-        ]);
+        $reservations = Reservation::paginate();
+        return view('reservations.index', compact('reservations'));
     }
 
     /**
@@ -29,7 +28,8 @@ class ReservationController extends Controller
     {
         $amenities = Amenity::all(); // Fetch all amenities from the database
         $users = User::all(); // Fetch all users from the database
-        return view('reservations.create', compact('amenities', 'users'));
+        $reservationsByUser = Reservation::where('user_id', auth()->user()->id)->get();
+        return view('reservations.create', compact('amenities', 'users', 'reservationsByUser'));
     }
 
     /**

@@ -72,6 +72,48 @@
                         </a>
                     </div>
                 </form>
+
+                @if(Auth::user()->role_id == 2)
+                    <h1 class="text-center text-2xl font-bold my-5">Your Reservations</h1>
+                    <table class="table-auto w-full m-3">
+                        <thead>
+                        <tr>
+                            <th class="border px-4 py-2">ID</th>
+                            <th class="border px-4 py-2">Amenity ID</th>
+                            <th class="border px-4 py-2">Date</th>
+                            <th class="border px-4 py-2">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($reservationsByUser as $reservation)
+                            <tr>
+                                <td class="border px-4 py-2">{{ $reservation->id }}</td>
+                                <td class="border px-4 py-2">{{ $reservation->amenity_id }}</td>
+                                <td class="border px-4 py-2">{{ $reservation->date }}</td>
+                                <td class="border px-4 py-2 flex justify-center">
+                                    <a href="{{ route('reservations.edit', $reservation->id) }}"
+                                       class="text-blue-500 hover:text-blue-900
+                                                     duration-300
+                                         text-center font-bold px-4 py-2
+                                         rounded">
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST"
+                                          class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="text-red-500
+                                                hover:text-red-700
+                                                        duration-300
+                                                 font-bold py-2 px-4 rounded">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                @endif
             </div>
         </div>
     </div>
